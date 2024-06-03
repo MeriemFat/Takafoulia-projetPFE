@@ -107,7 +107,7 @@ const Contract = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header  title="Contrats" onPressDrawer={()=> {
+      <Header  title="Contrats hello hi " onPressDrawer={()=> {
         navigation.openDrawer() 
         console.log("open")}} />
       <WelcomeCard userData={userData}/>
