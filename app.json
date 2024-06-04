@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "BottomTabDrawer",
-    "slug": "BottomTabDrawer",
+    "name": "altakafulia",
+    "slug": "altakafulia",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,16 +15,30 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.moemenhassine.altakafulia"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.moemenhassine.altakafulia"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "227d29ad-cca4-41bb-9c35-7c41000e2c0b"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/227d29ad-cca4-41bb-9c35-7c41000e2c0b"
+    },
+    "owner": "organisation"
   }
 }
