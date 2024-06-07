@@ -4,7 +4,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "../screens/HomeScreens/Home";
 import Login from "../screens/AuthentificationScreens/Login";
 import Services from "../screens/Services";
-import Signup from "../screens/AuthentificationScreens/Signup";
 import BeforeLoginPage from "../screens/AuthentificationScreens/BeforLoginPage";
 import {
   AddAvenant,
@@ -23,7 +22,10 @@ import ModifierSinistre from "../screens/SinistreScreen/ModifierSinistre";
 import ModifierQuittance from "../screens/QuittanceScreens/ModifierQuittance";
 import MenuButton from "../screens/DrawerContainer/MenuButton";
 import Produit from "../screens/Categories/Produit";
+import Signup from "../screens/AuthentificationScreens/Signup"; 
+import SideBar from "../screens/SideBar/SideBar";
 import BottomTabNavigation from "./BottomTabNavigation";
+import Parinage from "../screens/ParinageScreens/Parinage";
 const Stack = createStackNavigator();
 
 const HomeStackNavigator = () => {
@@ -33,7 +35,7 @@ const HomeStackNavigator = () => {
       <Stack.Screen name="Service" component={BottomTabNavigation} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Services" component={Services} />
-      <Stack.Screen name="Signup" component={Signup} />
+      <Stack.Screen name="SideBar" component={SideBar} />
       <Stack.Screen name="BeforeLoginPage" component={BeforeLoginPage} />
       <Stack.Screen
         name="ListSinistre"
@@ -44,6 +46,26 @@ const HomeStackNavigator = () => {
           headerTintColor: "#E2443B",
         }}
         component={ListSinistre}
+      />
+       <Stack.Screen
+        name="Parinage"
+        options={{
+          headerShown: true,
+          title: "Code de Parinage ", // Set the custom header title
+          headerBackTitle: "Retour",
+          headerTintColor: "#E2443B",
+        }}
+        component={Parinage}
+      />
+        <Stack.Screen
+        name="Signup"
+        options={{
+          headerShown: true,
+          title: "Retour page d'acceuille", // Set the custom header title
+          headerBackTitle: "Retour",
+          headerTintColor: "#E2443B",
+        }}
+        component={Signup}
       />
       <Stack.Screen
         name="ContraDetails"

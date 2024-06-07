@@ -9,24 +9,6 @@ import { useNavigation } from '@react-navigation/native';
 import { Header } from '../../components/Header';
 import { Colors } from '../../components/styles';
 
-// const Header = ({ title , onPressDrawer }) => {
-  
-//   return (
-//     <View style={styles.header}>
-//       <TouchableOpacity
-//         onPress={onPressDrawer}
-//         style={styles.profileIcon}
-//       >
-//         <Text style={styles.profileIconText}>👤</Text>
-//       </TouchableOpacity>
-//       <Text style={styles.headerText}>{title}</Text>
-//       <Image source={require('../../assets/images/logo.png')} style={styles.logo} />
-//       {/* <TouchableOpacity style={styles.profileIcon}>
-//         <Text style={styles.profileIconText}>👤</Text>
-//       </TouchableOpacity> */}
-//     </View>
-//   );
-// };
 
 const Contract = () => {
   const navigation = useNavigation();
@@ -107,7 +89,7 @@ const Contract = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header  title="Contrats hello hi " onPressDrawer={()=> {
+      <Header  title="Contrats" onPressDrawer={()=> {
         navigation.openDrawer() 
         console.log("open")}} />
       <WelcomeCard userData={userData}/>

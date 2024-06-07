@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Modal, Button, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ChatbotScreen from './ChatbotScreen'; // Assurez-vous d'utiliser le bon chemin
+import { Header } from '../../components/Header';
 
 const SideBar = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -12,11 +13,17 @@ const SideBar = ({ navigation }) => {
     { title: 'Quittance', iconName: 'receipt-outline', screenName: 'Quittance' },
     { title: 'Demande', iconName: 'chatbox-ellipses-outline', screenName: 'AddAvenant' },
     { title: 'Categories', iconName: 'grid-outline', screenName: 'Categories' },
-    { title: 'Parinage', iconName: 'people-outline', screenName: 'ParinageScreen' },
+    { title: 'Parinage', iconName: 'people-outline', screenName: 'Parinage' },
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.bigContainer}>
+      <View>
+      <Header  title="Services" onPressDrawer={()=> {
+        navigation.openDrawer() 
+        console.log("open")}} />
+      </View>
+      <View style={styles.container}>
       {services.map((service, index) => (
         <TouchableOpacity
           key={index}
@@ -35,6 +42,8 @@ const SideBar = ({ navigation }) => {
         <Ionicons name="chatbubble-ellipses-outline" size={70} color="red" />
         <Text style={styles.cardTitle}>Chatbot</Text>
       </TouchableOpacity>
+      </View>
+      
 
       <Modal
         animationType="slide"
@@ -54,6 +63,11 @@ const SideBar = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  bigContainer:{
+    marginTop:25,
+    flex: 1,
+    backgroundColor: '#f0f0f0',
+  },
   container: {
     flex: 1,
     flexDirection: 'row',
@@ -99,6 +113,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
   },
+  header:{ 
+    margin:5,
+  }
 });
 
 export default SideBar;

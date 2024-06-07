@@ -12,7 +12,7 @@ import {
   Sinistre,
 } from "../screens";
 import BottomTabNavigation from "./BottomTabNavigation";
-import RecipeScreen from "../screens/RecipeScreen/RecipeScreen";
+
 import Categories from "../screens/Categories/Categories";
 import ListQuittance from "../screens/QuittanceScreens/ListQuittance";
 import ModifierContrat from "../screens/ContratScreens/ModifierContrat";
@@ -28,7 +28,7 @@ function  MainNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Service" component={BottomTabNavigation} />
-      <Stack.Screen name="Recipe" component={RecipeScreen} />
+    
       <Stack.Screen 
       name="Categories" 
       options={{

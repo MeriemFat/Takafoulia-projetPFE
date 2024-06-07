@@ -1,59 +1,61 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import axios from 'axios';
-import {baseUrl} from '../../constants/api-url'; 
-const ChatbotScreen = () => {
-  const [question, setQuestion] = useState('');
-  const [response, setResponse] = useState('');
+import React, { useState, useCallback, useEffect } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { GiftedChat, Bubble, InputToolbar } from 'react-native-gifted-chat';
+import { Dialogflow_V2 } from 'react-native-dialogflow';
 
-  const handleGetAnswer = async () => {
-    try {
-      const res = await axios.post(`${baseUrl}/getAnswer`, { question }); // Mettez l'adresse IP correcte de votre serveur
-      setResponse(res.data.reponse);
-    } catch (error) {
-      console.error('Error fetching answer:', error);
-      setResponse('Error fetching answer');
-    }
+// Remplacez par votre ID de projet et les clés d'API
+const projectId = 'attakafouliachat-dlmg';
+
+
+
+const ChatbotScreen = () => {
+  const [response, setResponse] = useState(null);
+
+  useEffect(() => {
+    // Configure Dialogflow
+    Dialogflow_V2.setConfiguration(
+      'fathallah.meriem@esprit.tn',
+      'console.cloud.google.com/iam-admin/troubleshooter;permissions=resourcemanager.projects.createBillingAssignment,resourcemanager.projects.get;principal=fathallah.meriem@esprit.tn;resources=%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2Fattakafouliachat-dlmg,%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2Fattakafouliachat-dlmg/result',
+      Dialogflow_V2.LANG_ENGLISH_US,
+      projectId
+    );
+  }, []);
+
+  const runSample = async () => {
+    const request = {
+      sessionId: sessionId,
+      queryInput: {
+        text: {
+          text: 'Hello!',
+          languageCode: 'en-US',
+        },
+      },
+    };
+
+    Dialogflow_V2.requestQuery(
+      request.queryInput.text.text,
+      result => {
+        console.log('Detected intent');
+        console.log(`  Query: ${result.queryText}`);
+        console.log(`  Response: ${result.fulfillmentText}`);
+        if (result.intent) {
+          console.log(`  Intent: ${result.intent.displayName}`);
+        } else {
+          console.log('  No intent matched.');
+        }
+        setResponse(result.fulfillmentText);
+      },
+      error => console.error(error)
+    );
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Poser Votre Question:</Text>
-      <TextInput
-        style={styles.input}
-        value={question}
-        onChangeText={setQuestion}
-        placeholder="Enter your question"
-      />
-      <Button title="Get Answer" onPress={handleGetAnswer} />
-      {response ? <Text style={styles.response}>{response}</Text> : null}
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Button title="Run Sample" onPress={runSample} />
+      {response && (
+        <Text style={{ marginTop: 20, fontSize: 16 }}>Response: {response}</Text>
+      )}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  label: {
-    fontSize: 18,
-    marginBottom: 8,
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 16,
-    paddingHorizontal: 8,
-    width: '100%',
-  },
-  response: {
-    marginTop: 16,
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
-
 export default ChatbotScreen;

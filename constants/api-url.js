@@ -1,5 +1,5 @@
 
-const baseUrl='http://192.168.137.112:5100/api'
+const baseUrl='https://takafoulia-projetpfe-4.onrender.com/api'
 const authApis={
     signUp:`${baseUrl}/User/signup`
 }

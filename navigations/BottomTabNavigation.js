@@ -10,7 +10,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import Quittance from "../screens/QuittanceScreens/Quittance";
-import RecipeScreen from "../screens/RecipeScreen/RecipeScreen";
+
 import { AddAvenant } from "../screens";
 
 const Tab = createBottomTabNavigator();

@@ -17,7 +17,7 @@ import {
 
  }  from '../../components/styles';
  import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import SideBar from'../SideBar/SideBar'; 
 const { darkLight, red } = Colors;
 
 const Login = (props) => {
@@ -50,8 +50,7 @@ const Login = (props) => {
 
       AsyncStorage.setItem('token', response.data.accessToken);
       AsyncStorage.setItem('user', JSON.stringify(response.data.user));
-
-      props.navigation.navigate("Services");
+      props.navigation.navigate('SideBar');
     } catch (error) {
       console.error(error);
       if (error.response) {
